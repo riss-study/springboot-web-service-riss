@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+    id 'eclipse'
+    id 'org.springframework.boot' version '2.1.7.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'   //springboot dependency를 관리해주는 플러그인(필수)
+}   //springboot 책에 명시된 설정 부분을 개선한 방법, 위 4개는 스프링부트에서 필수
+
+group='com.riss'
+version='0.0.1-SNAPSHOT'
+sourceCompatibility='1.8'
+
+repositories {  //각종 dependency(의존성)를 받을 원격 저장소 설정
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}

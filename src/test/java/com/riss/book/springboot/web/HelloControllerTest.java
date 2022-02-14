@@ -7,9 +7,9 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(SpringExtension.class)
 @WebMvcTest(controllers=HelloController.class)
@@ -29,6 +29,21 @@ public class HelloControllerTest {
                 .andExpect(status().isOk())         //mvc.perform의 결과를 검증, HTTP Header의 Status를 검증(흔히 아는 200, 404, 500 등의 상태를 검증), 여기선 Ok 즉, 200인지에 대한 검증
                 .andExpect(content().string(hello));    //mvc.perform 결과 검증, 응답 본문의 내용을 검증=> 이 값인 "hello"와 Controller에서 리턴하는 값인 "hello"가 맞는지 검증
 
+    }
+
+    @Test
+    public void return_helloDto () throws Exception {
+        String name="hello";
+        int amount=1000;
+
+        mvc.perform(
+                get("/hello/dto")
+                        .param("name", name)
+                        .param("amount", String.valueOf(amount))
+        )
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.name", is(name)))
+                .andExpect(jsonPath("$.amount", is(amount)));
     }
 }
 

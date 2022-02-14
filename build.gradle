@@ -16,6 +16,12 @@ repositories {  //각종 dependency(의존성)를 받을 원격 저장소 설정
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web:2.5.4'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.5.4'
+
+    //gradle5이상에서 lombok dependency 추가(테스트 코드 의존성도 추가)
+    annotationProcessor 'org.projectlombok:lombok'
+    implementation 'org.projectlombok:lombok'
+    testAnnotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.projectlombok:lombok'
 } //ExtendWith 등과 같은 개선된 어노테이션 사용하기 위해 버젼 2.5.4로 특정
 
 test {

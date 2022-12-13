@@ -1,0 +1,24 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:testdb;MODE=MySQL;DATABASE_TO_LOWER=TRUE
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+
+  h2:
+    console:
+      enabled: true
+
+  profiles:
+    include: oauth
+
+server:
+  servlet:
+    encoding:
+      force-response: true
